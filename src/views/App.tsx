@@ -1,18 +1,23 @@
 import React, { Component } from 'react';
-import { withStyles, WithStyles } from '@material-ui/styles';
-import style from '../assets/styles/views/App';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-interface Props extends WithStyles<typeof style> {
+// Containers
+// TODO: Use code spliting and dynamic importing
+import Main from './Main';
+import Page404 from './Misc/Page404';
 
-}
 
-class App extends Component<Props> {
+class App extends Component {
 	render() {
-		const { classes } = this.props;
 		return (
-			<div className={classes.title}>Hello World</div>
+			<Router>
+				<Switch>
+					<Route exact path="/" component={Main} />
+					<Route path="*" component={Page404} />
+				</Switch>
+			</Router>
 		);
 	}
 }
 
-export default withStyles(style)(App);
+export default App;
